@@ -1,6 +1,6 @@
 import os
-from flask import Flask, flash, request, redirect, render_template
-from werkzeug.utils import secure_filename
+import uuid
+from flask import Flask, flash, request, redirect
 
 UPLOAD_FOLDER = 'files'
 
@@ -25,7 +25,7 @@ def save_record():
     if file.filename == '':
         flash('No selected file')
         return redirect(request.url)
-    file_name = secure_filename(file.filename)
+    file_name = str(uuid.uuid4()) + ".mp3"
     full_file_name = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
     file.save(full_file_name)
     return '<h1>Success</h1>'

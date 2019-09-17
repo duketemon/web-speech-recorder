@@ -12,8 +12,10 @@
     </p>
 </body>
 <script>
-    navigator.mediaDevices.getUserMedia({audio: true})
-    .then(stream => { handlerFunction(stream) });
+    navigator
+        .mediaDevices
+        .getUserMedia({audio: true})
+        .then(stream => { handlerFunction(stream) });
 
     function handlerFunction(stream) {
         rec = new MediaRecorder(stream);
@@ -50,11 +52,12 @@
         audioChunks = [];
         rec.start();
     };
+
     stopRecording.onclick = e => {
         console.log("Recording are stopped.");
         startRecording.disabled = false;
         stopRecording.disabled = true;
         rec.stop();
-    }
+    };
 </script>
 </html>
